@@ -20,33 +20,17 @@ router.get(
 //@route /auth/logout
 // router.get('/logout', (req,res) => {
 //   req.logout()
-//     res.redirect('/')
+//   res.redirect('/')
 //   })
 
-
-//gpt changes
-// router.get('/logout', async (req, res) => {
-//   try {
-//     req.logout(); // Assuming this function handles the user logout
-
-//     // Redirect to the root path after logout
-//     res.redirect('/');
-//   } catch (err) {
-//     // Handle any errors that occur during logout
-//     console.error('Logout error:', err);
-//     res.status(500).send('Internal Server Error');
-//   }
-// });
-
-
-router.get('/logout', (req,res,next) => {
-  req.logout(function(err){
+//needs callback changes
+router.get('/logout', (req, res) => {
+  req.logout((err) => {
+    // Perform any additional tasks after logout if needed
     if(err){return next(err)}
-    res.redirect('/')
-  })
-  })
-
-
+    res.redirect('/');
+  });
+});
 
 
 module.exports = router
