@@ -23,7 +23,7 @@ app.set('view engine','.hbs')
 
 //Routes
 app.use('/', require('./routes/index'))
-app.use('/dashboard', require('./routes/index'))
+//app.use('/dashboard', require('./routes/index')) not needed as its already on '/'
 
 
 const PORT = process.env.PORT || 3000
