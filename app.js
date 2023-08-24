@@ -1,9 +1,10 @@
+const path = require('path')
 const express = require('express')
 const dotenv = require('dotenv')
 const morgan = require('morgan')
 const exphbs = require('express-handlebars')
 const ConnectDB = require('./config/db')
-const { connect } = require('mongoose')
+//const { connect } = require('mongoose')
 
 //load env
 dotenv.config({path: './config/.env'})
@@ -20,6 +21,9 @@ app.engine('.hbs',exphbs.engine({
     extname: '.hbs'})
     )
 app.set('view engine','.hbs')
+
+//Static folder
+app.use(express.static(path.join(__dirname, 'public')))
 
 //Routes
 app.use('/', require('./routes/index'))
