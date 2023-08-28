@@ -23,11 +23,12 @@ if(process.env.NODE_ENV =='development'){
 }
 
 //Sessions middleware
-app.use(session({
-  secret: 'keyboard cat',
-  resave:false,
-  saveUninitialized:true,
-  cookie: {secure:true}
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave:false,
+    saveUninitialized:false,
+    //cookie: {secure:true} needs https on deployment
 }))
 
 //Handlebars
@@ -55,4 +56,4 @@ const PORT = process.env.PORT || 3000
 
 app.listen(
   PORT,
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))git 
