@@ -1,14 +1,16 @@
 const path = require('path')
 const express = require('express')
+const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const morgan = require('morgan')
 const exphbs = require('express-handlebars')
-const ConnectDB = require('./config/db')
 const passport = require('passport')
 const session = require('express-session')
-//const { connect } = require('mongoose')
+const MongoStore = require('connect-mongo')//(session)
+const ConnectDB = require('./config/db')
 
-//load env
+
+//load .env
 dotenv.config({path: './config/.env'})
 
 //Passport config
@@ -28,6 +30,7 @@ app.use(
     secret: 'keyboard cat',
     resave:false,
     saveUninitialized:false,
+    store: MongoStore.create({mongoUrl:process.env.MONGO_URI})
     //cookie: {secure:true} needs https on deployment
 }))
 
