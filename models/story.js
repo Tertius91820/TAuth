@@ -2,24 +2,23 @@ const mongoose = require('mongoose')
 
 
 const StorySchema = new mongoose.Schema({
-  googleId:{
+  title:{
+    type:String,
+    required:true,
+    trim: true
+  },
+  body:{
     type:String,
     required:true,
   },
-  displayName:{
+  status:{
     type:String,
-    required:true,
+    default:'public',
+    enum: ['pulic', 'private']
   },
-  firstName:{
-    type:String,
-    required:true,
-  },
-  lastName:{
-    type:String,
-    required:true,
-  },
-  image:{
-    type:String,
+  user:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'User',
   },
   createdAt:{
     type:Date,
