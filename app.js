@@ -39,9 +39,14 @@ app.use(
     //cookie: {secure:true} needs https on deployment
 }))
 
+//Handlebars Helpers
+const { formatDate } = require('./helpers/hbs')
+
 //Handlebars
 //!add the word .engine after exphbs
 app.engine('.hbs',exphbs.engine({
+    helpers:{formatDate,
+    },
     defaultLayout: 'main',
     extname: '.hbs'})
     )
