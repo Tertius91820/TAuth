@@ -5,10 +5,11 @@
       <div class="card">
         <div class="card_image">
           {{!-- todo: editIcon --}}
+          {{{editIcon user ../user _id}}}
         </div>
         <div class="card-content center-align">
           <h5>{{title}}</h5>
-          <p>{{body}}</p>
+          <p>{{stripTags (truncate body 150)}}</p>
           <br>
           <div class="chip">
             <img src="{{usery.image}}" alt="">

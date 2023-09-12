@@ -40,12 +40,17 @@ app.use(
 }))
 
 //Handlebars Helpers
-const { formatDate } = require('./helpers/hbs')
+const { formatDate, truncate, stripTags, editIcon, select } = require('./helpers/hbs')
 
 //Handlebars
 //!add the word .engine after exphbs
 app.engine('.hbs',exphbs.engine({
-    helpers:{formatDate,
+    helpers:{
+      formatDate,
+      stripTags,
+      truncate,
+      editIcon,
+      select,
     },
     defaultLayout: 'main',
     extname: '.hbs'})
@@ -56,6 +61,12 @@ app.set('view engine','.hbs')
 //Passport Middleware
 app.use(passport.initialize())
 app.use(passport.session())
+
+//set global variable middleware
+app.use(function (req,res, next) {
+  res.locals.user = req.user || null
+  next()
+})
 
 //Static folder
 app.use(express.static(path.join(__dirname, 'public')))
